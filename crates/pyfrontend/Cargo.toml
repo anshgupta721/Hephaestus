@@ -8,3 +8,4 @@ dynamics = { path = "../dynamics" }
 estimator = { path = "../estimator" }
 pyo3 = { version = "0.22", features = ["extension-module"] }
 numpy = "0.22"
+matplotlib = "0.3.0"
