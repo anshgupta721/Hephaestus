@@ -1,5 +1,5 @@
 [workspace]
-members = ["crates/dynamics", "crates/onboard_software", "crates/pyfrontend"]
+members = ["crates/dynamics", "crates/onboard_software", "crates/pyfrontend", "crates/simulation"]
 resolver = "2"
 
 [workspace.dependencies]
