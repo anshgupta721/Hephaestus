@@ -5,7 +5,7 @@ edition = "2024"
 
 [dependencies]
 dynamics = { path = "../dynamics" }
-estimator = { path = "../estimator" }
+onboard_software = { path = "../onboard_software" }
 pyo3 = { version = "0.22", features = ["extension-module"] }
 numpy = "0.22"
 matplotlib = "0.3.0"

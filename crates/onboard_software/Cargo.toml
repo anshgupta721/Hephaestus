@@ -1,10 +1,9 @@
 [package]
-name = "estimator"
+name = "onboard_software"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-nalgebra = { workspace = true }
 anise = { workspace = true }
 hifitime = { workspace = true }
 serde = { workspace = true }
