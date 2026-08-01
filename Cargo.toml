@@ -7,3 +7,4 @@ anise = "0.5"
 hifitime = "4"
 serde = { version = "1", features = ["derive"] }
 rayon = "1"
+azimuth = { git = "https://github.com/anshgupta721/Azimuth.git" }
