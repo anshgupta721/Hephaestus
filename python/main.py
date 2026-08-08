@@ -2,6 +2,8 @@
 
 Short description of what this module does.
 """
+import matplotlib.pyplot as plt
+import numpy as np
 
 def main():
     """Main runner"""
