@@ -368,9 +368,15 @@ name = "dynamics"
 version = "0.1.0"
 dependencies = [
  "anise",
+ "dynamics 0.1.0 (git+https://github.com/anshgupta721/Azimuth.git)",
  "hifitime",
  "serde",
 ]
+
+[[package]]
+name = "dynamics"
+version = "0.1.0"
+source = "git+https://github.com/anshgupta721/Azimuth.git#d995877d96df9f293973d75ee3f99550931efb6e"
 
 [[package]]
 name = "either"
@@ -1201,7 +1207,7 @@ dependencies = [
 name = "pyfrontend"
 version = "0.1.0"
 dependencies = [
- "dynamics",
+ "dynamics 0.1.0",
  "matplotlib",
  "numpy",
  "onboard_software",
