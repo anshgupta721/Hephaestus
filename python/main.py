@@ -1,4 +1,7 @@
+"""Hephaestus CLI and entrypoint.
 
+Short description of what this module does.
+"""
 
 def main():
     """Main runner"""
