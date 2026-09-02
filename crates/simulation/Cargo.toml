@@ -4,3 +4,6 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+dynamics = { git = "https://github.com/anshgupta721/Azimuth.git", version = "0.1.0" }
+nalgebra = { workspace = true }
+onboard_software = { version = "0.1.0", path = "../onboard_software" }

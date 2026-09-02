@@ -1,5 +1,5 @@
 [workspace]
-members = ["crates/dynamics", "crates/onboard_software", "crates/pyfrontend", "crates/simulation"]
+members = ["crates/onboard_software", "crates/pyfrontend", "crates/simulation"]
 resolver = "2"
 
 [workspace.dependencies]
@@ -7,4 +7,5 @@ anise = "0.5"
 hifitime = "4"
 serde = { version = "1", features = ["derive"] }
 rayon = "1"
-azimuth = { git = "https://github.com/anshgupta721/Azimuth.git" }
+nalgebra = "0.35.0"
+math = { git = "https://github.com/anshgupta721/Azimuth.git", version = "0.1.0" }
