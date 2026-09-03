@@ -9,5 +9,3 @@ if __name__ == "__main__":
     t, states, _ = pysim_runner(x_0, u_0, (0.0, 10.0), 0.01)
     plt.plot(t, states[:, 0])
     plt.show()
-
-    
