@@ -7,3 +7,5 @@ edition = "2024"
 anise = { workspace = true }
 hifitime = { workspace = true }
 serde = { workspace = true }
+math = { workspace = true }
+nalgebra = { workspace = true }
