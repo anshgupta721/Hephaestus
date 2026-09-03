@@ -1,18 +1,25 @@
-use nalgebra::{SVector, SMatrix};
-use crate::config::{ESTIMATOR_STATES, SensorVector};
+use crate::config::{ESTIMATOR_STATES, EstimatorVector, SensorVector};
+use nalgebra::{SMatrix, SVector};
 
-
-pub struct Estimator{
-    x: SVector<f64, {ESTIMATOR_STATES}>,
-    p: SMatrix<f64, {ESTIMATOR_STATES}, {ESTIMATOR_STATES}>,
+pub struct Estimator {
+    x: EstimatorVector,
+    p: SMatrix<f64, ESTIMATOR_STATES, ESTIMATOR_STATES>,
 }
 
-impl Estimator{
-    pub fn initialize(&self, sensor_data: SensorVector /* Fill in with sensor parameters*/ ){
-        
+impl Estimator {
+    pub fn new() -> Estimator {
+        Estimator {
+            x: EstimatorVector::zeros(),
+            p: SMatrix::<f64, ESTIMATOR_STATES, ESTIMATOR_STATES>::zeros(),
+        }
     }
 
-    pub fn estimate(&self, sensor_data: SensorVector /* Fill in with sensors*/ ){
-        
+    pub fn initialize(&self, sensor_data: SensorVector /* Fill in with sensor parameters*/) {}
+
+    pub fn estimate(
+        &self,
+        sensor_data: SensorVector, /* Fill in with sensors*/
+    ) -> EstimatorVector {
+        self.x
     }
 }
