@@ -1,0 +1,10 @@
+[package]
+name = "dynamics"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anise = { workspace = true }
+hifitime = { workspace = true }
+serde = { workspace = true }
+azimuth_dynamics = { workspace = true }
