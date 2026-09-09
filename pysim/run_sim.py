@@ -47,3 +47,4 @@ if __name__ == "__main__":
             writer.writerow([t_i, *row])
  
     print(f"Wrote {len(t)} rows to {OUTPUT_CSV}")
+    
