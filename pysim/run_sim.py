@@ -8,7 +8,10 @@ OUTPUT_CSV = "sim_output.csv"
 
 if __name__ == "__main__":
     epoch_0 = "2025-07-15T11:23:27.30 UTC"
-    x_0 = np.array([-194.33826150101773, 824.8947002999065, 1653.703391999927, .08094043359034313, -1.4478938749999684, .731723312100025])
+    x_0 = np.array([
+        -194.33826150101773, 824.8947002999065, 1653.703391999927,
+        .08094043359034313, -1.4478938749999684, .731723312100025,
+    ])
     t, states, _ = pysim_runner(epoch_0, x_0, (0.0, 28800), 0.1)
 
     state_names = ["x", "y", "z", "x_dot", "y_dot", "z_dot"]
@@ -45,6 +48,5 @@ if __name__ == "__main__":
         writer.writerow(["t_s", "x_km", "y_km", "z_km", "vx_km_s", "vy_km_s", "vz_km_s"])
         for t_i, row in zip(t, states):
             writer.writerow([t_i, *row])
- 
+
     print(f"Wrote {len(t)} rows to {OUTPUT_CSV}")
-    
