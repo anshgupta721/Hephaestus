@@ -1,8 +1,9 @@
 """Run the simulation entry point."""
+import csv
 import numpy as np
 import matplotlib.pyplot as plt
 from pyfrontend import pysim_runner  # pylint: disable=no-name-in-module
-import csv
+
 OUTPUT_CSV = "sim_output.csv"
 
 if __name__ == "__main__":
