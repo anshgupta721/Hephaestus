@@ -8,3 +8,5 @@ dynamics = { workspace = true }
 sensors = { git = "https://github.com/anshgupta721/Azimuth.git", version = "0.1.0" }
 nalgebra = { workspace = true }
 onboard_software = { version = "0.1.0", path = "../onboard_software" }
+anise.workspace = true
+hifitime.workspace = true

@@ -7,8 +7,7 @@ pub const NU: usize = 3;
 
 pub type ControlVector = SVector<f64, NU>;
 pub type EstimatorVector = SVector<f64, EST_STATES>;
-pub type SensorVector = SVector<f64, 3>;
-
+pub type SensorVector = SVector<f64, 6>;
 // Estimator system model
 pub struct navigation;
 impl navigation {
