@@ -18,9 +18,7 @@ impl Estimator {
         }
     }
 
-    pub fn initialize(&self, sensor_data: SensorVector) {
-        
-    }
+    pub fn initialize(&self, sensor_data: SensorVector) {}
 
     pub fn get_estimate(&self) -> EstimatorVector {
         self.x
@@ -30,12 +28,7 @@ impl Estimator {
         self.p
     }
 
-    pub fn predict(&mut self) {
+    pub fn predict(&mut self) {}
 
-    }
-
-    pub fn update(&mut self, sensor_data: SensorVector) {
-
-
-    }
+    pub fn update(&mut self, sensor_data: SensorVector) {}
 }

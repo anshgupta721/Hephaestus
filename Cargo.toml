@@ -3,7 +3,7 @@ members = ["crates/onboard_software", "crates/pyfrontend", "crates/simulation"]
 resolver = "2"
 
 [workspace.dependencies]
-anise = "0.5"
+anise = "0.10.6"
 hifitime = "4"
 serde = { version = "1", features = ["derive"] }
 rayon = "1"
