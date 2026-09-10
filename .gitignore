@@ -27,4 +27,4 @@ target
 
 /.venv
 
-/pysim/plots
+/plots

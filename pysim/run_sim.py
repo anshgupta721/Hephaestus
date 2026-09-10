@@ -15,7 +15,7 @@ if __name__ == "__main__":
         -194.33826150101773, 824.8947002999065, 1653.703391999927,
         .08094043359034313, -1.4478938749999684, .731723312100025,
     ])
-    t, states, _ = pysim_runner(epoch_0, x_0, (0.0, 28800), 0.1)
+    t, states, _ = pysim_runner(epoch_0, x_0, (0.0, 28800), 1)
 
     state_names = ["x", "y", "z", "x_dot", "y_dot", "z_dot"]
     state_units = ["km", "km", "km", "km/s", "km/s", "km/s"]

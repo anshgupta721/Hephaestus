@@ -18,7 +18,7 @@ pub const MOON_PA_FILE: &str =
 
 pub const NX: usize = 6;
 
-pub const MOON_MU: f64 = 4902.801076;
+pub const MOON_MU: f64 = 4902.8001184575496;
 pub const INER_FRAME: Frame = MOON_J2000;
 pub const CEL_FIXED_FRAME: Frame = MOON_PA_DE440_FRAME;
 
