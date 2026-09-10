@@ -1,10 +1,13 @@
 """Run the simulation entry point."""
 import csv
+from pathlib import Path
+
 import numpy as np
 import matplotlib.pyplot as plt
 from pyfrontend import pysim_runner  # pylint: disable=no-name-in-module
 
 OUTPUT_CSV = "sim_output.csv"
+PLOTS_DIR = Path("plots")
 
 if __name__ == "__main__":
     epoch_0 = "2025-07-15T11:23:27.30 UTC"
@@ -27,6 +30,8 @@ if __name__ == "__main__":
     state_axes[-1, 1].set_xlabel("Time (s)")
     state_fig.suptitle("Simulation State History")
     state_fig.tight_layout()
+    PLOTS_DIR.mkdir(exist_ok=True)
+    state_fig.savefig(PLOTS_DIR / "simulation_state_history.png")
 
     fig = plt.figure(figsize=(10, 8))
     axis = fig.add_subplot(111, projection="3d")
@@ -40,6 +45,7 @@ if __name__ == "__main__":
     axis.set_box_aspect((1, 1, 1))
     axis.legend()
     fig.tight_layout()
+    fig.savefig(PLOTS_DIR / "3d_orbit.png")
     plt.show()
 
 
