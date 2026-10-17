@@ -3,7 +3,7 @@ use anise::frames::Frame;
 use anise::prelude::*;
 use nalgebra::{SMatrix, SVector};
 
-use dynamics::gravity::gravity::GravityField;
+use dynamics::gravity::gravity::SphericalHarmonics;
 use dynamics::gravity::spherical_harmonics::HarmonicCoeffs;
 
 // use dynamics::models::state_space_model::{LTVSystem, StateSpace};
@@ -16,7 +16,7 @@ pub const PCA_FILE: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/data/pck11.pca"
 pub const MOON_PA_FILE: &str =
     concat!(env!("CARGO_MANIFEST_DIR"), "/data/moon_pa_de440_200625.bpc");
 
-pub const NX: usize = 6;
+pub const NX: usize = 15;
 
 pub const MOON_MU: f64 = 4902.8001184575496;
 pub const INER_FRAME: Frame = MOON_J2000;
@@ -86,14 +86,14 @@ pub fn load() -> HarmonicCoeffs {
 pub type StateVector = SVector<f64, NX>;
 
 pub struct Plant {
-    gravity: Box<dyn GravityField>,
+    gravity: SphericalHarmonics,
     inertial_frame: Frame,
     body_fixed_frame: Frame,
 }
 
 impl Plant {
     pub fn new(
-        gravity: Box<dyn GravityField>,
+        gravity: SphericalHarmonics,
         inertial_frame: Frame,
         body_fixed_frame: Frame,
     ) -> Plant {
@@ -105,7 +105,6 @@ impl Plant {
     }
     pub fn derivative(
         &self,
-        t: f64,
         x: StateVector,
         almanac: &Almanac,
         epoch: Epoch,
@@ -119,7 +118,7 @@ impl Plant {
             .rotate(self.body_fixed_frame, self.inertial_frame, epoch)
             .unwrap();
         let pos_body_fixed = dcm_i2b.rot_mat * pos_inertial;
-        let accel = self.gravity.acceleration(pos_body_fixed);
+        let (accel, gradient) = self.gravity.acceleration_and_gradient(pos_body_fixed);
         let accel_inertial = dcm_b2i.rot_mat * accel;
         StateVector::from_row_slice(&[
             x[3],
@@ -128,6 +127,16 @@ impl Plant {
             accel_inertial[0],
             accel_inertial[1],
             accel_inertial[2],
+            gradient[(0, 0)],
+            gradient[(0, 1)],
+            gradient[(0, 2)],
+            gradient[(1, 0)],
+            gradient[(1, 1)],
+            gradient[(1, 2)],
+            gradient[(2, 0)],
+            gradient[(2, 1)],
+            gradient[(2, 2)],
         ])
     }
+
 }

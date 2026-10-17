@@ -14,6 +14,7 @@ if __name__ == "__main__":
     x_0 = np.array([
         -194.33826150101773, 824.8947002999065, 1653.703391999927,
         .08094043359034313, -1.4478938749999684, .731723312100025,
+        0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
     ])
     t, states, _ = pysim_runner(epoch_0, x_0, (0.0, 28800), 1)
 
@@ -32,6 +33,17 @@ if __name__ == "__main__":
     state_fig.tight_layout()
     PLOTS_DIR.mkdir(exist_ok=True)
     state_fig.savefig(PLOTS_DIR / "simulation_state_history.png")
+
+    gravity_gradient = states[:, 6:15].reshape(-1, 3, 3)
+    gravity_gradient_trace = np.trace(gravity_gradient, axis1=1, axis2=2)
+    trace_fig, trace_axis = plt.subplots(figsize=(10, 5))
+    trace_axis.plot(t, gravity_gradient_trace)
+    trace_axis.set_title("Gravity Gradient Trace")
+    trace_axis.set_xlabel("Time (s)")
+    trace_axis.set_ylabel("Trace")
+    trace_axis.grid(True, alpha=0.3)
+    trace_fig.tight_layout()
+    trace_fig.savefig(PLOTS_DIR / "gravity_gradient_trace.png")
 
     fig = plt.figure(figsize=(10, 8))
     axis = fig.add_subplot(111, projection="3d")

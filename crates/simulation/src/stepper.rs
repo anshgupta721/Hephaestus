@@ -2,7 +2,7 @@ use anise::prelude::*;
 use hifitime::{Epoch, Unit};
 
 use crate::config::{
-    BSP_FILE, CEL_FIXED_FRAME, COEFFS, INER_FRAME, MOON_MU, MOON_PA_FILE, Plant, REF_RADIUS_SHM,
+    BSP_FILE, CEL_FIXED_FRAME, INER_FRAME, MOON_MU, MOON_PA_FILE, Plant, REF_RADIUS_SHM,
     StateVector, load,
 };
 use dynamics::gravity::gravity::SphericalHarmonics;
@@ -13,7 +13,7 @@ use onboard_software::config::{EstimatorVector, SensorVector};
 use onboard_software::control_stack::ControlStack;
 
 pub fn sensor_dynamics(x: StateVector) -> SensorVector {
-    x
+    x.fixed_rows::<6>(0).into_owned()
 }
 
 pub fn sim_stepper(
@@ -34,7 +34,7 @@ pub fn sim_stepper(
     let harmonics = load();
 
     let mut plant = Plant::new(
-        Box::new(SphericalHarmonics::new(MOON_MU, REF_RADIUS_SHM, harmonics)),
+        SphericalHarmonics::new(MOON_MU, REF_RADIUS_SHM, harmonics),
         INER_FRAME,
         CEL_FIXED_FRAME,
     );
@@ -56,7 +56,7 @@ pub fn sim_stepper(
         x = rk4(
             &(|t_local: f64, x: StateVector| {
                 let e = epoch_0 + Unit::Second * t_local;
-                plant.derivative(t_local, x, &almanac, e)
+                plant.derivative(x, &almanac, e)
             }),
             t,
             dt,
@@ -82,5 +82,9 @@ pub fn sim_stepper(
         // u_hist.push(u);
         est_hist.push(gnc.estimator.get_estimate());
     }
-    (t_hist, x_hist, est_hist)
+    (
+        t_hist,
+        x_hist,
+        est_hist,
+    )
 }
